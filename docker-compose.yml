@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  dbservice:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: lms   # Auto-create this DB
+    volumes:
+      - ./data:/var/lib/postgresql/data  # FIXED PATH
+    ports:
+      - "5433:5432"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d lms"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  appservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot
+    depends_on:
+      dbservice:
+        condition: service_healthy
+    environment:
+      - spring.datasource.url=jdbc:postgresql://dbservice:5432/lms
+      - spring.datasource.username=postgres
+      - spring.datasource.password=root
+      - spring.jpa.hibernate.ddl-auto=update
+      - spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+    ports:
+      - "8085:8085"
+    networks:
+      - backend
+    restart: on-failure
+
+networks:
+  backend:
+    driver: bridge
