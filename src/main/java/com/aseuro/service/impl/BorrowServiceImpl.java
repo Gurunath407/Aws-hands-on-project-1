@@ -76,8 +76,7 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public APIResponse<String> returnBook(String recordId) {
 
-        BorrowRecords record = borrowRecordsRepository.findById(recordId)
-                .orElseThrow(() -> new RuntimeException("Record not found"));
+        BorrowRecords record = borrowRecordsRepository.findById(recordId).get();
 
         record.setReturnDate(LocalDate.now());
         record.setStatus(BookStatus.RETURNED);
@@ -111,9 +110,8 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public APIResponse<BorrowRecordResponseWithUser> recordById(String id) {
 
-        BorrowRecords r = borrowRecordsRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Record not found"));
-        User user = userRepository.findById(r.getUser().getId()).orElseThrow(() -> new RuntimeException("User not found"));
+        BorrowRecords r = borrowRecordsRepository.findById(id).get();
+        User user = userRepository.findById(r.getUser().getId()).get();
 
         return new APIResponse<>(
                 200,
