@@ -20,7 +20,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PostMapping("/add-book")
+    
     public ResponseEntity<APIResponse<String>> addBook(@RequestBody BookRequest request) {
         APIResponse<String> response = bookService.addBook(request);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
