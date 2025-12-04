@@ -15,9 +15,11 @@ import java.util.UUID;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private  BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public APIResponse<String> addBook(BookRequest request) {
