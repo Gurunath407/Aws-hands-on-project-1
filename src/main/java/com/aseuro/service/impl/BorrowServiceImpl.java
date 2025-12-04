@@ -38,8 +38,11 @@ public class BorrowServiceImpl implements BorrowService {
 
         APIResponse<String> response = new APIResponse<>();
 
-        Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+        // Book book = bookRepository.findById(bookId)
+        //         .orElseThrow(() -> new RuntimeException("Book not found"));
+
+                  Book book = bookRepository.findById(bookId).get();
+               
 
         if (book.getQuantity() <= 0) {
             return new APIResponse<>(400, "Not Available", "Book is out of stock");
