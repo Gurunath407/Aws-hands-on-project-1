@@ -70,6 +70,7 @@ public class BookServiceImpl implements BookService {
     public APIResponse<BookResponse> bookById(String id) {
 
         Book book = bookRepository.findById(id).get();
+        
 
         return new APIResponse<>(
                 200,
