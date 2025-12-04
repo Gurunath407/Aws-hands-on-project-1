@@ -20,7 +20,8 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @
+
+    @PostMapping
     public ResponseEntity<APIResponse<String>> addBook(@RequestBody BookRequest request) {
         APIResponse<String> response = bookService.addBook(request);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
@@ -31,10 +32,21 @@ public class BookController {
         APIResponse<List<BookResponse>> response = bookService.bookList();
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
-
-    @RequestMapping
+    @GetMapping("/{id}")
     public ResponseEntity<APIResponse<BookResponse>> bookById(@PathVariable String id) {
         APIResponse<BookResponse> response = bookService.bookById(id);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<APIResponse<String>> updateBook(@PathVariable String id, @RequestBody BookRequest request) {
+        APIResponse<String> response = bookService.updateBook(id, request);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<APIResponse<String>> deleteBook(@PathVariable String id) {
+        APIResponse<String> response = bookService.deleteBook(id);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
 }

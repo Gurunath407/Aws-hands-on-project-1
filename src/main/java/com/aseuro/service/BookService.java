@@ -11,6 +11,7 @@ public interface BookService {
     APIResponse<String> addBook(BookRequest request);
     APIResponse<List<BookResponse>> bookList();
     APIResponse<BookResponse> bookById(String id);
-
+    APIResponse<String> updateBook(String id, BookRequest request);
+    APIResponse<String> deleteBook(String id);
 
 }
