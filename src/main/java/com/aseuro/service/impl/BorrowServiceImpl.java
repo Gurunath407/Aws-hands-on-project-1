@@ -41,7 +41,11 @@ public class BorrowServiceImpl implements BorrowService {
         // Book book = bookRepository.findById(bookId)
         //         .orElseThrow(() -> new RuntimeException("Book not found"));
 
-                  Book book = bookRepository.findById(bookId).get();
+        Book book = bookRepository.findById(bookId).get();
+
+        int a=0;
+        int b=1;
+        int c=b/a;
                
 
         if (book.getQuantity() <= 0) {
