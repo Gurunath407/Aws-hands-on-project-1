@@ -32,7 +32,7 @@ public class BookController {
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
 
-    @GetMapping("/{id}")
+    @RequestMapping
     public ResponseEntity<APIResponse<BookResponse>> bookById(@PathVariable String id) {
         APIResponse<BookResponse> response = bookService.bookById(id);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
