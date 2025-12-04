@@ -2,7 +2,6 @@ package com.aseuro.payload.request;
 
 import com.aseuro.annotation.EmailValidation;
 import com.aseuro.annotation.PasswordValidation;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

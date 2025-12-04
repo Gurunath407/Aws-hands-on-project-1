@@ -3,7 +3,6 @@ package com.aseuro.entity;
 import com.aseuro.enums.BookStatus;
 import jakarta.persistence.*;
 
-import java.util.UUID;
 
 @Entity
 @Table(name = "book")

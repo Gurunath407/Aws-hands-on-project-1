@@ -1,6 +1,5 @@
 package com.aseuro.service;
 
-import com.aseuro.entity.Book;
 import com.aseuro.payload.request.BookRequest;
 import com.aseuro.payload.response.APIResponse;
 import com.aseuro.payload.response.BookResponse;

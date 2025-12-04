@@ -2,9 +2,6 @@ package com.aseuro.entity;
 
 import jakarta.persistence.*;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 @Entity
 @Table(name = "user_info")
 public class User {
