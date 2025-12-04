@@ -69,9 +69,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public APIResponse<BookResponse> bookById(String id) {
 
-        Book book = bookRepository.findById(id).get();
-        
-
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
         return new APIResponse<>(
                 200,
                 book.getTitle()+" Data",
