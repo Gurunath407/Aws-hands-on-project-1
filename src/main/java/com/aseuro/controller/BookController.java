@@ -20,13 +20,14 @@ public class BookController {
         this.bookService = bookService;
     }
 
+
     @PostMapping
     public ResponseEntity<APIResponse<String>> addBook(@RequestBody BookRequest request) {
         APIResponse<String> response = bookService.addBook(request);
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
 
-    @GetMapping("/list")
+    @RequestMapping
     public ResponseEntity<APIResponse<List<BookResponse>>> bookList() {
         APIResponse<List<BookResponse>> response = bookService.bookList();
         return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
