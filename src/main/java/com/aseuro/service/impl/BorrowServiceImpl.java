@@ -76,7 +76,8 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public APIResponse<String> returnBook(String recordId) {
 
-        BorrowRecords record = borrowRecordsRepository.findById(recordId).get();
+        BorrowRecords record = borrowRecordsRepository.findById(recordId)
+                .orElseThrow(() -> new RuntimeException("Borrow record not found"));
 
         record.setReturnDate(LocalDate.now());
         record.setStatus(BookStatus.RETURNED);
